@@ -18,4 +18,8 @@ public class HomeServiceImpl implements HomeService {
 	public void createHome(HomeProject homeProject) {
 		homeDao.addHome(homeProject);	
 	}
+	
+	public HomeProject getHome(String nameHome) {
+		return homeDao.getHome(nameHome);
+	}
 }

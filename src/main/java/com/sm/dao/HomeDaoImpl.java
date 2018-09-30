@@ -1,5 +1,6 @@
 package com.sm.dao;
 
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
@@ -19,5 +20,13 @@ public class HomeDaoImpl implements HomeDao {
 	public void addHome(HomeProject homeProject) {
 		 Session session = sessionFactory.getCurrentSession();
 		 session.save(homeProject);
+	}
+	
+	public HomeProject getHome(String nameHome) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery("FROM HomeProject WHERE nameHome =:name");
+		query.setParameter("name", nameHome);
+		HomeProject home = (HomeProject) query.getSingleResult();
+		return home;
 	}
 }
