@@ -48,8 +48,8 @@ public class RoomController {
 	}
 	
 	@RequestMapping(value = "/createroom/{id_room}", method = RequestMethod.POST, headers="Accept=application/json")
-	public ResponseEntity<HttpStatus> createRooms(@RequestBody Rooms room, @PathVariable("id_room") String idRoom){
-		if(idRoom != null && idRoom.length()>0) {
+	public ResponseEntity<HttpStatus> createRooms(@RequestBody Rooms room, @PathVariable("id_room") int  idRoom){
+		if(idRoom <= 0) {
 			roomService.createRoom(room);
 		}
 		else {
