@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sm.entity.AC;
 import com.sm.entity.HomeProject;
 import com.sm.entity.Rooms;
 import com.sm.service.HomeService;
@@ -28,6 +29,9 @@ public class RoomController {
 	
 	@Autowired
 	RoomService roomService;
+	
+	@Autowired
+	ACService acService;
 	
 	@RequestMapping(value = "/createhome", method = RequestMethod.POST, headers="Accept=application/json")
 	public ResponseEntity<HttpStatus> createHome(@RequestBody HomeProject homeProject){
@@ -61,5 +65,12 @@ public class RoomController {
 	@RequestMapping(value = "/getlistrooms/{name_home}", method = RequestMethod.GET, headers="Accept=application/json")
 	public List<Rooms> getListRoomByIdHome(@PathVariable("name_home") String name_home){
 		return roomService.getListRooms(name_home);
+	}
+	
+	@RequestMapping(value = "/createAC/{ip_ac}", method = RequestMethod.POST, headers = "Accept = application/json")
+	public ResponseEntity<HttpStatus> createAC(@RequestBody AC ac, @PathVariable("id_ac") String ipAC) {
+		if(ipAC == "" && ipAC == null) {
+			
+		}
 	}
 }

@@ -18,7 +18,7 @@ public class Rooms {
 	private int id;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_home", nullable = true)
+	@JoinColumn(name = "id_home", nullable = false)
 	private HomeProject homeId;
 	
 	@Column(name = "name_room", unique=true)
