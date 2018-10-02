@@ -9,5 +9,5 @@ public interface RoomService {
 	public void updateRoom(Rooms room);
 	public List<Rooms> getListRooms(String name_home);
 	public Rooms getRoom(String nameRoom);
-	
+	public void saveOrUpdate(Rooms room);
 }

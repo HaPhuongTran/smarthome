@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @Table(name = "rooms")
 public class Rooms {
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id", nullable = false)
 	private int id;
 	
@@ -23,6 +23,12 @@ public class Rooms {
 	
 	@Column(name = "name_room", unique=true)
 	private String nameRoom;
+	
+	public Rooms() {}
+	
+	public Rooms(int id) {
+		this.id = id;
+	}
 	
 	public void setId(int id) {
 		this.id = id;

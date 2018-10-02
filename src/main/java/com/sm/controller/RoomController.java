@@ -13,10 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sm.entity.AC;
-import com.sm.entity.HomeProject;
+
 import com.sm.entity.Rooms;
-import com.sm.service.HomeService;
 import com.sm.service.RoomService;
 
 @RestController
@@ -25,25 +23,8 @@ import com.sm.service.RoomService;
 public class RoomController {
 	
 	@Autowired
-	HomeService homeService;
-	
-	@Autowired
 	RoomService roomService;
 	
-	@Autowired
-	ACService acService;
-	
-	@RequestMapping(value = "/createhome", method = RequestMethod.POST, headers="Accept=application/json")
-	public ResponseEntity<HttpStatus> createHome(@RequestBody HomeProject homeProject){
-		homeService.createHome(homeProject);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-	}
-	
-	@RequestMapping(value = "/gethome/{name_home}", method = RequestMethod.GET, headers="Accept=application/json")
-	public HomeProject getHomeByName(@PathVariable("name_home") String name_home){
-		HomeProject home =homeService.getHome(name_home);
-        return home;
-	}
 	
 	@RequestMapping(value = "/getroom/{name_room}", method = RequestMethod.GET, headers="Accept=application/json")
 	public Rooms getRoomByName(@PathVariable("name_room") String name_room){
@@ -51,9 +32,9 @@ public class RoomController {
         return room;
 	}
 	
-	@RequestMapping(value = "/createroom/{id_room}", method = RequestMethod.POST, headers="Accept=application/json")
-	public ResponseEntity<HttpStatus> createRooms(@RequestBody Rooms room, @PathVariable("id_room") int  idRoom){
-		if(idRoom <= 0) {
+	@RequestMapping(value = "/createroom", method = RequestMethod.POST, headers="Accept=application/json")
+	public ResponseEntity<HttpStatus> createRooms(@RequestBody Rooms room){
+		if(room.getId() <= 0) {
 			roomService.createRoom(room);
 		}
 		else {
@@ -67,10 +48,4 @@ public class RoomController {
 		return roomService.getListRooms(name_home);
 	}
 	
-	@RequestMapping(value = "/createAC/{ip_ac}", method = RequestMethod.POST, headers = "Accept = application/json")
-	public ResponseEntity<HttpStatus> createAC(@RequestBody AC ac, @PathVariable("id_ac") String ipAC) {
-		if(ipAC == "" && ipAC == null) {
-			
-		}
-	}
 }

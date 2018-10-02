@@ -1,17 +1,16 @@
-package com.sm.dao;
+package com.sm.dao.impl;
 
 import javax.persistence.Query;
-import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sm.dao.HomeDao;
 import com.sm.entity.HomeProject;
 
 @Repository
-@Transactional
 public class HomeDaoImpl implements HomeDao {
 	@Autowired
 	private SessionFactory sessionFactory;

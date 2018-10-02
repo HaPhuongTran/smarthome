@@ -8,29 +8,22 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "ac")
-public class AC {
+@Table(name = "humidity_decive")
+public class HumidityDecive {
+
 	@Id
 	@Column(name = "ip", nullable = false, unique = true)
 	private String ip;
 	
-	@Column(name = "name", unique = true, nullable = false)
-	private String name_ac;
+	@Column(name = "name_hd", nullable = false, unique = true)
+	private String nameHD;
 	
-	@Column(name = "state", nullable = false)
+	@Column(name = "state")
 	private String state = "off";
-
+	
 	@ManyToOne
-	@JoinColumn(name = "id_room", nullable = false)
-	private Rooms idRoom;
-
-	public int getIdRoom() {
-		return idRoom.getId();
-	}
-
-	public void setIdRoom(Rooms idRoom) {
-		this.idRoom = idRoom;
-	}
+	@JoinColumn(name = "room_id", nullable = false)
+	private Rooms roomId;
 
 	public String getIp() {
 		return ip;
@@ -40,14 +33,14 @@ public class AC {
 		this.ip = ip;
 	}
 
-	public String getName_ac() {
-		return name_ac;
+	public String getNameHD() {
+		return nameHD;
 	}
 
-	public void setName_ac(String name_ac) {
-		this.name_ac = name_ac;
+	public void setNameHD(String nameHD) {
+		this.nameHD = nameHD;
 	}
-	
+
 	public String getState() {
 		return state;
 	}
@@ -55,4 +48,13 @@ public class AC {
 	public void setState(String state) {
 		this.state = state;
 	}
+
+	public int getRoomId() {
+		return roomId.getId();
+	}
+
+	public void setRoomId(Rooms roomId) {
+		this.roomId = roomId;
+	}
+
 }

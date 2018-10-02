@@ -1,8 +1,7 @@
-package com.sm.dao;
+package com.sm.dao.impl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -10,10 +9,10 @@ import javax.persistence.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.sm.dao.RoomDao;
 import com.sm.entity.Rooms;
 
 @Repository
-@Transactional
 public class RoomDaoImpl implements RoomDao {
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -42,5 +41,12 @@ public class RoomDaoImpl implements RoomDao {
 		query.setParameter("name", nameRoom);
 		Rooms room = (Rooms) query.getSingleResult();
 		return room;
+	}
+
+	@Override
+	public void saveOrUpdate(Rooms room) {
+		Session session = sessionFactory.getCurrentSession();
+		session.saveOrUpdate(room);
+		
 	}
 }
